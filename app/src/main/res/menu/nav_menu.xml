@@ -7,19 +7,19 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@android:drawable/ic_menu_compass"
-            android:title="Home"/>
+            android:title="@string/nav_home"/>
         <item
             android:id="@+id/nav_profile"
             android:icon="@android:drawable/ic_menu_edit"
-            android:title="Profile"/>
+            android:title="@string/nav_profile"/>
         <item
-            android:id="@+id/nav_quest"
-            android:icon="@android:drawable/ic_menu_share"
-            android:title="Quest"/>
-        <item
-            android:id="@+id/nav_register"
+            android:id="@+id/nav_challenges"
             android:icon="@android:drawable/star_big_off"
-            android:title="Register"/>
+            android:title="@string/nav_challenges"/>
+        <item
+            android:id="@+id/nav_calendar"
+            android:icon="@android:drawable/ic_menu_my_calendar"
+            android:title="@string/nav_calendar"/>
     </group>
     <item
         android:title="">

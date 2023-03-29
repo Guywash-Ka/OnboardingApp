@@ -45,8 +45,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.nav_home -> loadFragment(HomeFragment())
             R.id.nav_profile -> loadFragment(ProfileFragment())
-            R.id.nav_quest -> loadFragment(QuestFragment())
-            R.id.nav_register -> loadFragment(RegisterFragment())
+//            R.id.nav_quest -> loadFragment(QuestFragment())
+            R.id.nav_challenges -> loadFragment(ChallengeFragment())
+            R.id.nav_calendar -> loadFragment(CalendarFragment())
             R.id.nav_logout -> loadFragment(RegisterFragment())
         }
         drawerLayout.closeDrawer(GravityCompat.START)
