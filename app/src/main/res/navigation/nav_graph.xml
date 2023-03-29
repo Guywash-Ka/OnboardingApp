@@ -24,6 +24,12 @@
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_challengeFragment"
+            app:destination="@id/challengeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
     </fragment>
     <fragment
         android:id="@+id/questFragment"
@@ -35,4 +41,14 @@
         android:name="com.blackpearl.android.onboadingapp.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/challengeFragment"
+        android:name="com.blackpearl.android.onboadingapp.ChallengeFragment"
+        android:label="fragment_challenge"
+        tools:layout="@layout/fragment_challenge" />
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.blackpearl.android.onboadingapp.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" />
 </navigation>
