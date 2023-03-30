@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val button = view.findViewById<Button>(R.id.homeFragmentButton)
         button.setOnClickListener {
-//            TODO()
+            Navigation.findNavController(view).navigate(R.id.quest_fragment)
         }
         // Inflate the layout for this fragment
         return view
