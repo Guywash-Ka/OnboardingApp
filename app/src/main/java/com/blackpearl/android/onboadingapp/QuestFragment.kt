@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.blackpearl.android.onboadingapp.databinding.FragmentQuestBinding
+import com.blackpearl.android.onboadingapp.quest.Scenario
 
 class QuestFragment : Fragment() {
 
@@ -25,7 +23,8 @@ class QuestFragment : Fragment() {
     ): View? {
         _binding = FragmentQuestBinding.inflate(inflater, container, false)
 
-        val repo = ScenarioRepository(requireContext(), ::updateUI)
+        val repo = ScenarioRepository(requireContext(), ::updateUI, binding.root)
+
 
         scenario = repo.getScenario(1)
 
@@ -35,6 +34,20 @@ class QuestFragment : Fragment() {
     }
 
     private fun updateUI(actIndex: Int) {
+
+        if (scenario.size()-1 < actIndex) {
+            // This is over
+            return
+        }
+
+        val act = scenario.getAct(actIndex)
+
+        binding.root.removeAllViews()
+
+        binding.root.addView(act.getMotionLayout())
+
+    }
+    private fun OLDupdateUI(actIndex: Int) {
 
         if (scenario.size()-1 < actIndex) {
             // This is over
