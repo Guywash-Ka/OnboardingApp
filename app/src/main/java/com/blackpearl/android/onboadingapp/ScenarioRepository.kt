@@ -13,16 +13,6 @@ class ScenarioRepository(
 
         return when (day) {
             1 -> {
-//                Scenario(context, nextActCallback)
-//                    .addAct {
-//                        it.addNarrator("Hello")
-//                        it.addNextButton("Understood")
-//                    }
-//                    .addAct {
-//                        it.addNarrator("Goodbye")
-//                        it.addNextButton("Okay")
-//                    }
-
                 Scenario(context, nextActCallback)
                     .addAct {
                         it.addNarrator("Act I. Pizdec", "go go go")

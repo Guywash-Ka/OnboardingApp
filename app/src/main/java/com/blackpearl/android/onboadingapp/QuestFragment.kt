@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.blackpearl.android.onboadingapp.databinding.FragmentQuestBinding
 import com.blackpearl.android.onboadingapp.quest.Scenario
 
@@ -36,6 +37,7 @@ class QuestFragment : Fragment() {
 
         if (scenario.size()-1 < actIndex) {
             // This is over
+            findNavController().popBackStack()
             return
         }
 
@@ -44,22 +46,6 @@ class QuestFragment : Fragment() {
         binding.root.removeAllViews()
 
         binding.root.addView(act.getMotionLayout())
-
-    }
-    private fun OLDupdateUI(actIndex: Int) {
-
-        if (scenario.size()-1 < actIndex) {
-            // This is over
-            return
-        }
-
-        val act = scenario.getAct(actIndex)
-
-        binding.root.removeAllViews()
-
-        act.getViews().forEach {
-            binding.root.addView(it)
-        }
 
     }
 }

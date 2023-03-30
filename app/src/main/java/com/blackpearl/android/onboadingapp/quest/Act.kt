@@ -23,10 +23,9 @@ class Act(
     private val Int.dp: Int
         get() = (context.resources.displayMetrics.density * this + 0.5f).toInt()
 
-
-    private val views = mutableListOf<View>()
-
     private lateinit var motionLayout: MotionLayout
+
+    fun getMotionLayout() = motionLayout
 
     fun addNarrator(speech: String, buttonText: String) {
 
@@ -47,50 +46,4 @@ class Act(
         button.setOnClickListener { nextActCallback(index + 1) }
 
     }
-
-    fun addNarrator(txt: String): Act {
-
-        val textView = TextView(context).apply {
-            text = txt
-
-            layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-
-            setPadding(100.dp)
-
-        }
-
-        views += textView
-
-        return this
-    }
-
-    fun addNextButton(txt: String): Act {
-
-        val button = Button(context).apply {
-            text = txt
-
-            layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-
-            setOnClickListener {
-                nextActCallback(index+1)
-            }
-        }
-
-        views += button
-
-        return this
-    }
-
-    fun addNarrator(textStringRes: Int): Act {
-        return this
-    }
-
-    fun getViews(): List<View> = views
-    fun getMotionLayout() = motionLayout
 }
