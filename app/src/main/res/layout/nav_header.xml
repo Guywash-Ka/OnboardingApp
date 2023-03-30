@@ -6,25 +6,27 @@
     android:layout_height="176dp"
     android:gravity="bottom"
     android:padding="16dp"
-    android:background="@drawable/headerbkg"
+    android:background="#b51d4e"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
+        android:id="@+id/image_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/aklogo"/>
 
     <TextView
+        android:id="@+id/name_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Власов Родион"
+        android:text="@string/name"
         android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Стажер"
+        android:text="@string/Additional_info"
         android:textColor="@color/grey"
         android:textSize="14sp"
         android:layout_marginBottom="16dp"/>
