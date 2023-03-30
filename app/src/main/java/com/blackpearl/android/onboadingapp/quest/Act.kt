@@ -17,7 +17,6 @@ class Act(
     private val context: Context,
     private val index: Int,
     private val nextActCallback: (Int) -> Unit,
-    private val rootView: ViewGroup
 ) {
 
     // translate 123.dp (123 in dp) to pixels
@@ -33,7 +32,12 @@ class Act(
 
         val inflater = LayoutInflater.from(context)
 
-        motionLayout = inflater.inflate(R.layout.quest_narrator, rootView, false) as MotionLayout
+        motionLayout = inflater.inflate(R.layout.quest_narrator, null) as MotionLayout
+
+        motionLayout.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
 
         val textView = motionLayout.findViewById<TextView>(R.id.text)
         val button = motionLayout.findViewById<Button>(R.id.button)

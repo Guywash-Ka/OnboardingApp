@@ -6,8 +6,7 @@ import com.blackpearl.android.onboadingapp.quest.Scenario
 
 class ScenarioRepository(
     private val context: Context,
-    private val nextActCallback: (Int) -> Unit,
-    private val rootView: ViewGroup
+    private val nextActCallback: (Int) -> Unit
 ) {
 
     fun getScenario(day: Int): Scenario {
@@ -24,7 +23,7 @@ class ScenarioRepository(
 //                        it.addNextButton("Okay")
 //                    }
 
-                Scenario(context, nextActCallback, rootView)
+                Scenario(context, nextActCallback)
                     .addAct {
                         it.addNarrator("Act I. Pizdec", "go go go")
                     }.addAct {
@@ -34,7 +33,7 @@ class ScenarioRepository(
 
             else -> {
 
-                Scenario(context, nextActCallback, rootView)
+                Scenario(context, nextActCallback)
                     .addAct {
                         it.addNarrator("Act III. Pizdec", "go go go")
                     }.addAct {

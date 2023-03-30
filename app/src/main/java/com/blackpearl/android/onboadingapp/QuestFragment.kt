@@ -23,8 +23,7 @@ class QuestFragment : Fragment() {
     ): View? {
         _binding = FragmentQuestBinding.inflate(inflater, container, false)
 
-        val repo = ScenarioRepository(requireContext(), ::updateUI, binding.root)
-
+        val repo = ScenarioRepository(requireContext(), ::updateUI)
 
         scenario = repo.getScenario(1)
 
@@ -56,10 +55,10 @@ class QuestFragment : Fragment() {
 
         val act = scenario.getAct(actIndex)
 
-        binding.linearLayout.removeAllViews()
+        binding.root.removeAllViews()
 
         act.getViews().forEach {
-            binding.linearLayout.addView(it)
+            binding.root.addView(it)
         }
 
     }
