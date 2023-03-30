@@ -3,52 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/home_fragment">
 
     <fragment
-        android:id="@+id/registerFragment"
+        android:id="@+id/register_fragment"
         android:name="com.blackpearl.android.onboadingapp.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/home_fragment"
         android:name="com.blackpearl.android.onboadingapp.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
+
         <action
-            android:id="@+id/action_homeFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            android:id="@+id/action_home_fragment_to_quest_fragment"
+            app:destination="@id/quest_fragment" />
         <action
-            android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            android:id="@+id/action_home_fragment_to_calendar_fragment"
+            app:destination="@id/calendar_fragment" />
         <action
-            android:id="@+id/action_homeFragment_to_challengeFragment"
-            app:destination="@id/challengeFragment" />
+            android:id="@+id/action_home_fragment_to_challenge_fragment"
+            app:destination="@id/challenge_fragment" />
         <action
-            android:id="@+id/action_homeFragment_to_calendarFragment"
-            app:destination="@id/calendarFragment" />
+            android:id="@+id/action_home_fragment_to_register_fragment"
+            app:destination="@id/register_fragment" />
         <action
-            android:id="@+id/action_homeFragment_to_questFragment"
-            app:destination="@id/questFragment" />
+            android:id="@+id/action_home_fragment_to_profile_fragment"
+            app:destination="@id/profile_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/questFragment"
+        android:id="@+id/quest_fragment"
         android:name="com.blackpearl.android.onboadingapp.QuestFragment"
         android:label="fragment_quest"
         tools:layout="@layout/fragment_quest" />
     <fragment
-        android:id="@+id/profileFragment"
+        android:id="@+id/profile_fragment"
         android:name="com.blackpearl.android.onboadingapp.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
-        android:id="@+id/challengeFragment"
+        android:id="@+id/challenge_fragment"
         android:name="com.blackpearl.android.onboadingapp.ChallengeFragment"
         android:label="fragment_challenge"
         tools:layout="@layout/fragment_challenge" />
     <fragment
-        android:id="@+id/calendarFragment"
+        android:id="@+id/calendar_fragment"
         android:name="com.blackpearl.android.onboadingapp.CalendarFragment"
         android:label="fragment_calendar"
-        tools:layout="@layout/fragment_calendar" />
+        tools:layout="@layout/fragment_calendar" >
+        <action
+            android:id="@+id/action_calendar_fragment_to_challenge_fragment"
+            app:destination="@id/challenge_fragment" />
+    </fragment>
 </navigation>

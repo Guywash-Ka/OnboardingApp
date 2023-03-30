@@ -9,5 +9,7 @@
     <string name="nav_challenges">Challenges</string>
     <string name="nav_calendar">Calendar</string>
     <string name="name">Власов Родион</string>
-    <string name="Additional_info">Стажер</string>
+    <string name="Additional_info">mail_ru2003@gmail.com</string>
+    <string name="profile_image_description">Profile Image</string>
+    <string name="rns_logo">RNS_logo</string>
 </resources>
