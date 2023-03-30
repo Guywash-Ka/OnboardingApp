@@ -14,8 +14,8 @@
     <Button
         android:id="@+id/homeFragmentButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Go to Quest"/>
+        android:layout_height="173dp"
+        android:layout_gravity="bottom"
+        android:text="Go to Quest" />
 
 </FrameLayout>
