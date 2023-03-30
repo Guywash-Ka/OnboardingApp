@@ -61,5 +61,6 @@ tools:context=".MainActivity">
     app:itemIconTint="@color/black"
     app:itemTextColor="@color/black"
     tools:ignore="MissingConstraints" />
+
 </androidx.drawerlayout.widget.DrawerLayout>
 
