@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.blackpearl.android.onboadingapp.databinding.FragmentQuestBinding
 import com.blackpearl.android.onboadingapp.quest.Scenario
 
@@ -13,9 +14,11 @@ class QuestFragment : Fragment() {
 
     private var _binding: FragmentQuestBinding? = null
     private val binding
-        get() = checkNotNull(_binding) { "FragmentGridBinding is null" }
+        get() = checkNotNull(_binding) { "FragmentQuestBinding is null" }
 
     private lateinit var scenario: Scenario
+
+    private val args: QuestFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +29,7 @@ class QuestFragment : Fragment() {
 
         val repo = ScenarioRepository(requireContext(), ::updateUI)
 
-        scenario = repo.getScenario(1)
+        scenario = repo.getScenario(args.day)
 
         updateUI(0)
 

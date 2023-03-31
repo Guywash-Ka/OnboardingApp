@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_home" >
 
         <action
-            android:id="@+id/action_home_fragment_to_quest_fragment"
+            android:id="@+id/start_quest"
             app:destination="@id/quest_fragment" />
         <action
             android:id="@+id/action_home_fragment_to_calendar_fragment"
@@ -36,7 +36,11 @@
         android:id="@+id/quest_fragment"
         android:name="com.blackpearl.android.onboadingapp.QuestFragment"
         android:label="fragment_quest"
-        tools:layout="@layout/fragment_quest" />
+        tools:layout="@layout/fragment_quest" >
+        <argument
+            android:name="day"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/profile_fragment"
         android:name="com.blackpearl.android.onboadingapp.ProfileFragment"

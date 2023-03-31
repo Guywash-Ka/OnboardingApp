@@ -52,4 +52,23 @@ class Act(
             image.load(it)
         }
     }
+
+    fun addText(mainText: String, buttonText: String) {
+        val inflater = LayoutInflater.from(context)
+
+        motionLayout = inflater.inflate(R.layout.quest_text, null) as MotionLayout
+
+        motionLayout.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
+
+        val textView = motionLayout.findViewById<TextView>(R.id.quest_main_text)
+        val button = motionLayout.findViewById<Button>(R.id.button)
+
+        textView.text = mainText
+        button.text = buttonText
+        button.setOnClickListener { nextActCallback(index + 1) }
+
+    }
 }
