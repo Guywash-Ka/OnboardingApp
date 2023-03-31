@@ -5,23 +5,49 @@
 
     <ConstraintSet android:id="@+id/start" >
         <Constraint
+            android:id="@+id/button"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toEndOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="64dp" />
+        <Constraint
+            android:id="@+id/narrator"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintStart_toEndOf="parent"
-
-            android:layout_width="wrap_content"
-            android:id="@+id/text" />
+            motion:layout_constraintVertical_bias="0.75" />
     </ConstraintSet>
     <ConstraintSet android:id="@+id/end" >
         <Constraint
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:id="@+id/text"
             motion:layout_constraintTop_toTopOf="parent"
-            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="64dp"
             motion:layout_constraintEnd_toEndOf="parent"
-            motion:layout_constraintStart_toStartOf="parent" />
+            android:layout_marginEnd="64dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="64dp" />
+        <Constraint
+            android:layout_height="128dp"
+            android:layout_width="128dp"
+            android:id="@+id/narrator"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toEndOf="@id/text"
+            motion:layout_constraintVertical_bias="0.75" />
     </ConstraintSet>
     <Transition
         motion:constraintSetStart="@+id/start"

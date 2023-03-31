@@ -12,10 +12,7 @@
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="32dp"
-        android:text="SAMPLE TEXT"
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="371dp" />
+        android:text="SAMPLE TEXT" />
 
     <Button
         android:id="@+id/button"
@@ -25,5 +22,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/narrator"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:srcCompat="@drawable/cat" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
