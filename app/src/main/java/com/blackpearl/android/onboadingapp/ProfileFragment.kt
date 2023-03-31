@@ -1,10 +1,14 @@
 package com.blackpearl.android.onboadingapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +38,17 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        // TEST CODE
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        val txtProgress: TextView = view.findViewById(R.id.txtProgress)
+        val progressBar: ProgressBar = view.findViewById(R.id.progressBar)
+        var dayNumber: Int = 3
+        val daysAmount = 5
+        progressBar.progress = 100 / daysAmount * dayNumber
+        txtProgress.text = "$dayNumber/$daysAmount\nday"
+        // END OF TEST CODE
+
+        return view
     }
 
     companion object {
