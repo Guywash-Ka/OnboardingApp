@@ -1,81 +1,8 @@
 package com.blackpearl.android.onboadingapp
 
 import android.content.Context
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
-
-class Scenario(
-    private val context: Context,
-    private val nextActCallback: (Int) -> Unit
-) {
-    private val acts = mutableListOf<Act>()
-
-    fun addAct(configure: (Act) -> Unit): Scenario {
-        val act = Act(context, acts.size, nextActCallback)
-        configure(act)
-        acts += act
-        return this
-    }
-
-    fun size() = acts.size
-
-    fun getAct(index: Int) = acts[index]
-}
-
-class Act(
-    private val context: Context,
-    private val index: Int,
-    private val nextActCallback: (Int) -> Unit
-) {
-
-    private val views = mutableListOf<View>()
-
-    fun addNarrator(txt: String): Act {
-
-        val textView = TextView(context).apply {
-            text = txt
-
-            layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-
-        }
-
-        views += textView
-
-        return this
-    }
-
-    fun addNextButton(txt: String): Act {
-
-        val button = Button(context).apply {
-            text = txt
-
-            layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-
-            setOnClickListener {
-                nextActCallback(index+1)
-            }
-        }
-
-        views += button
-
-        return this
-    }
-
-    fun addNarrator(textStringRes: Int): Act {
-        return this
-    }
-
-    fun getViews(): List<View> = views
-}
+import com.blackpearl.android.onboadingapp.quest.Scenario
 
 class ScenarioRepository(
     private val context: Context,
@@ -84,16 +11,16 @@ class ScenarioRepository(
 
     fun getScenario(day: Int): Scenario {
 
+        val str = "В начале июля, в чрезвычайно жаркое время, под вечер, один молодой человек вышел из своей каморки, которую нанимал от жильцов в С — м переулке, на улицу и медленно, как бы в нерешимости, отправился к К — ну мосту.\n" +
+                "Он благополучно избегнул встречи с своею хозяйкой на лестнице. Каморка его приходилась под самою кровлей высокого пятиэтажного дома и походила более на шкаф, чем на квартиру. Квартирная же хозяйка его, у которой он нанимал эту каморку с обедом и прислугой, помещалась одною лестницей ниже, в отдельной квартире, и каждый раз, при выходе на улицу, ему непременно надо было проходить мимо хозяйкиной кухни, почти всегда настежь отворенной на лестницу. И каждый раз молодой человек, проходя мимо, чувствовал какое-то болезненное и трусливое ощущение, которого стыдился и от которого морщился. Он был должен кругом хозяйке и боялся с нею встретиться.\n"
+
         return when (day) {
             1 -> {
                 Scenario(context, nextActCallback)
                     .addAct {
-                        it.addNarrator("Hello")
-                        it.addNextButton("Understood")
-                    }
-                    .addAct {
-                        it.addNarrator("Goodbye")
-                        it.addNextButton("Okay")
+                        it.addNarrator(str, "go go go", R.drawable.cat)
+                    }.addAct {
+                        it.addNarrator("Act II. Zaebis", "Da", R.drawable.cat_2)
                     }
             }
 
@@ -101,7 +28,9 @@ class ScenarioRepository(
 
                 Scenario(context, nextActCallback)
                     .addAct {
-                        it.addNarrator("This is the end")
+                        it.addNarrator("Act III. Pizdec", "go go go")
+                    }.addAct {
+                        it.addNarrator("Act IIVDFSD. Zaebis", "Da")
                     }
             }
 

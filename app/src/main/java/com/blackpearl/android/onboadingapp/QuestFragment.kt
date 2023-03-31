@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.blackpearl.android.onboadingapp.databinding.FragmentQuestBinding
+import com.blackpearl.android.onboadingapp.quest.Scenario
 
 class QuestFragment : Fragment() {
 
@@ -38,16 +37,15 @@ class QuestFragment : Fragment() {
 
         if (scenario.size()-1 < actIndex) {
             // This is over
+            findNavController().popBackStack()
             return
         }
 
         val act = scenario.getAct(actIndex)
 
-        binding.linearLayout.removeAllViews()
+        binding.root.removeAllViews()
 
-        act.getViews().forEach {
-            binding.linearLayout.addView(it)
-        }
+        binding.root.addView(act.getMotionLayout())
 
     }
 }

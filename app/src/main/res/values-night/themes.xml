@@ -12,14 +12,8 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-<<<<<<< HEAD
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-=======
         <item name="android:windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-
->>>>>>> origin/quest
         <!-- Customize your theme here. -->
     </style>
 </resources>
