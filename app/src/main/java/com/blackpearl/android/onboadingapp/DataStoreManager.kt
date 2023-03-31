@@ -8,7 +8,6 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.flow.map
 
 const val FILENAME = "Settings"
 
@@ -18,7 +17,7 @@ class DataStoreManager(context: Context) {
 
     private object PreferencesKeys{
         val NAME = stringPreferencesKey("name")
-        val LEVEL = intPreferencesKey("level")
+        val DAY = intPreferencesKey("day")
     }
 
     suspend fun saveName(name: String) {
@@ -27,20 +26,21 @@ class DataStoreManager(context: Context) {
         }
     }
 
-    suspend fun saveLevel(level: Int) {
+    suspend fun saveDay(level: Int) {
         dataStore.edit { prefs ->
-            prefs[PreferencesKeys.LEVEL] = level
+            prefs[PreferencesKeys.DAY] = level
         }
     }
 
     suspend fun getName(): String {
         return dataStore.data.firstOrNull()
-            ?.get(PreferencesKeys.NAME).let { it!! }
+            ?.get(PreferencesKeys.NAME)
+            .let { it!! }
     }
 
-    suspend fun getLevel(): Int {
+    suspend fun getDay(): Int {
         return dataStore.data.firstOrNull()
-            ?.get(PreferencesKeys.LEVEL)
+            ?.get(PreferencesKeys.DAY)
             .let { it!! }
     }
 
