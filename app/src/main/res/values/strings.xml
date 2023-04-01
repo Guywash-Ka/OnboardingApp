@@ -12,4 +12,5 @@
     <string name="Additional_info">mail_ru2003@gmail.com</string>
     <string name="profile_image_description">Profile Image</string>
     <string name="rns_logo">RNS_logo</string>
+    <string name="progressText">5/7\ndays</string>
 </resources>
