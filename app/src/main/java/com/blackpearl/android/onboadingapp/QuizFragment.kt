@@ -1,5 +1,12 @@
 package com.blackpearl.android.onboadingapp
 
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.drawable.Animatable2.AnimationCallback
+import android.graphics.drawable.AnimationDrawable
+import android.graphics.drawable.ColorStateListDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +21,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.blackpearl.android.onboadingapp.databinding.FragmentQuizBinding
-import org.w3c.dom.Text
 
 class QuizFragment: Fragment() {
 
@@ -55,6 +61,7 @@ class QuizFragment: Fragment() {
 
         when(quizViewModel.currentQuestionType) {
             1 -> {
+
                 //show first views
                 val layout = layoutInflater.inflate(R.layout.question_type1,binding.root,false)
                 binding.fragmentQuiz.removeAllViews()
@@ -69,15 +76,12 @@ class QuizFragment: Fragment() {
                 questionText.setText(quizViewModel.currentQuestionResId)
                 answersIdList.forEachIndexed { index, elem ->
                     layout.findViewById<TextView>(elem).apply {
+
                         val answerTextId = quizViewModel.currentQuestionAnswers.getAnswers()[index]
                         setText(answerTextId)
                         setOnClickListener {view: View ->
-                            (layout as MotionLayout).transitionToStart {
 
-                                checkAnswer(answerTextId,1)
-                                quizViewModel.currentIndex += 1
-                                updateQuestion()
-                            }
+
                         }
                     }
                 }
