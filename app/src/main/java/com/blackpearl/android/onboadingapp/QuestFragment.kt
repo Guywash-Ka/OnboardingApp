@@ -56,14 +56,14 @@ class QuestFragment : Fragment() {
 
         val layout = act.getMotionLayout()
 
-        act.getTestId()?.also {
+        act.getTestId()?.also {testId ->
             // We have a test
 
             layout.findViewById<Button>(R.id.quest_next_button).setOnClickListener {
 
                 questViewModel.updateIndex(actIndex+1)
                 findNavController().navigate(
-                    QuestFragmentDirections.actionQuestFragmentToQuizFragment(1)
+                    QuestFragmentDirections.actionQuestFragmentToQuizFragment(testId)
                 )
 
                 setFragmentResultListener(QuizFragment.REQUEST_KEY_POINTS) { _, res ->

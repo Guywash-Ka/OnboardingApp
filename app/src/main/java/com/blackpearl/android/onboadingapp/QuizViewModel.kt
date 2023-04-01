@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.blackpearl.android.onboadingapp.quiz.Answers
 
 
-class QuizViewModel(testId: Int) : ViewModel() {
+class QuizViewModel(private val testId: Int) : ViewModel() {
     private val testRepository = TestRepository()
 
     val test = testRepository.getTest(testId)
@@ -23,6 +23,9 @@ class QuizViewModel(testId: Int) : ViewModel() {
     get() = test[currentIndex].answers
 
     var points = 0
+    var rightAnswers = 0
+
+    fun getArgs() = listOf(testId,points,rightAnswers,test.size)
 
 }
 

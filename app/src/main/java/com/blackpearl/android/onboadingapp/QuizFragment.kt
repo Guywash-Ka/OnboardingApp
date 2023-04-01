@@ -1,9 +1,15 @@
 package com.blackpearl.android.onboadingapp
 
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
+import android.text.Editable
+import android.text.Layout
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
@@ -14,7 +20,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.blackpearl.android.onboadingapp.databinding.FragmentQuizBinding
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import org.w3c.dom.Text
+import java.util.*
 
 class QuizFragment: Fragment() {
 
@@ -48,8 +57,13 @@ class QuizFragment: Fragment() {
 
         if (quizViewModel.currentIndex == quizViewModel.test.size) {
             //Test has finished
-            setFragmentResult(REQUEST_KEY_POINTS, bundleOf(BUNDLE_KEY_POINTS to quizViewModel.points))
-            findNavController().popBackStack()
+            setFragmentResult(
+                QuizFragment.REQUEST_KEY_POINTS,
+                bundleOf(QuizFragment.BUNDLE_KEY_POINTS to quizViewModel.points))
+            val arguments = quizViewModel.getArgs()
+            findNavController().navigate(
+                QuizFragmentDirections.actionQuizFragmentToTestPassedFragment(arguments[0],arguments[1],arguments[2],arguments[3])
+            )
             return
         }
 
@@ -59,22 +73,28 @@ class QuizFragment: Fragment() {
                 val layout = layoutInflater.inflate(R.layout.question_type1,binding.root,false)
                 binding.fragmentQuiz.removeAllViews()
                 binding.fragmentQuiz.addView(layout)
-                val questionText = layout.findViewById<TextView>(R.id.question_text_view)
+                val questionTextView = layout.findViewById<TextView>(R.id.question_text_view)
                 val answersIdList = listOf(R.id.answer1_text_view,
                     R.id.answer2_text_view,
                     R.id.answer3_text_view,
                     R.id.answer4_text_view)
                 val points = layout.findViewById<TextView>(R.id.points_text_view)
 
-                questionText.setText(quizViewModel.currentQuestionResId)
+                questionTextView.setText(quizViewModel.currentQuestionResId)
                 answersIdList.forEachIndexed { index, elem ->
                     layout.findViewById<TextView>(elem).apply {
                         val answerTextId = quizViewModel.currentQuestionAnswers.getAnswers()[index]
                         setText(answerTextId)
                         setOnClickListener {view: View ->
                             (layout as MotionLayout).transitionToStart {
+                                if(checkAnswer(getString(answerTextId),1)) {
+                                    //GREEN
+                                }
 
-                                checkAnswer(answerTextId,1)
+                                else {
+                                    //RED
+                                }
+
                                 quizViewModel.currentIndex += 1
                                 updateQuestion()
                             }
@@ -87,6 +107,37 @@ class QuizFragment: Fragment() {
             }
             2 -> {
                 //show seconds views
+                val layout = layoutInflater.inflate(R.layout.question_type2,binding.root,false)
+                binding.fragmentQuiz.removeAllViews()
+                binding.fragmentQuiz.addView(layout)
+
+                val questionTextView = layout.findViewById<TextView>(R.id.question2_text_view)
+                val submitButton = layout.findViewById<Button>(R.id.submit_button)
+                val editTextView = layout.findViewById<TextInputEditText>(R.id.edit_text)
+                var inputText = ""
+
+                questionTextView.setText(quizViewModel.currentQuestionResId)
+                editTextView.addTextChangedListener(object : TextWatcher{
+                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                    }
+
+                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                        inputText = p0.toString().lowercase().trim()
+                    }
+
+                    override fun afterTextChanged(p0: Editable?) {
+
+                    }
+
+                })
+
+                submitButton.setOnClickListener { view: View ->
+                    checkAnswer(inputText,2)
+                    quizViewModel.currentIndex += 1
+                    updateQuestion()
+                }
+
             }
             else -> {
                 //
@@ -94,27 +145,29 @@ class QuizFragment: Fragment() {
         }
     }
 
-    private fun checkAnswer(answerTextId: Int,questionType : Int) {
+    private fun checkAnswer(answerText: String, questionType: Int): Boolean {
         //ВСТАВИТЬ РАЗУКРАШКУ?!
         val rightAnswer = quizViewModel.currentQuestionAnswers.getRightAnswer()
 
-        if (getString(rightAnswer) == getString(answerTextId)) {
+        if (getString(rightAnswer) == answerText) {
             Toast.makeText(context,"YOU GODDAMN RIGHT!",Toast.LENGTH_SHORT).show()
+            quizViewModel.rightAnswers += 1
             quizViewModel.points +=
                 when(questionType) {
                     1 -> 5
                     2 -> 10
                     else -> 0
                 }
+            return true
             // GREEN LIGHT
         }
 
         else {
             Toast.makeText(context,"LOSER!",Toast.LENGTH_SHORT).show()
             // RED LIGHT
+            return false
         }
     }
-
     companion object {
         const val REQUEST_KEY_POINTS = "REQUEST_KEY_POINTS"
         const val BUNDLE_KEY_POINTS = "BUNDLE_KEY_POINTS"

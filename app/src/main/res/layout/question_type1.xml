@@ -22,38 +22,51 @@
         android:id="@+id/answer1_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="120dp"
         android:background="@drawable/answer_background"
+        android:padding="4dp"
+        android:paddingStart="12dp"
         android:text="answer1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/question_text_view" />
 
     <TextView
         android:id="@+id/answer2_text_view"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/answer_background"
+        android:padding="4dp"
+        android:paddingStart="12dp"
         android:text="answer2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/answer1_text_view" />
 
     <TextView
         android:id="@+id/answer3_text_view"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/answer_background"
+        android:padding="4dp"
+        android:paddingStart="12dp"
         android:text="answer3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/answer2_text_view" />
 
     <TextView
         android:id="@+id/answer4_text_view"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/answer_background"
+        android:backgroundTint="#FAEBD7"
+        android:padding="4dp"
+        android:paddingStart="12dp"
         android:text="answer4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/answer3_text_view" />
