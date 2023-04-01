@@ -17,7 +17,7 @@ class TestRepository() {
                     putRightAnswer(R.string.answer2_capital_of_australia)
                 }
                 val answers2 = Answers().apply {
-                    putAnswers(listOf(R.string.answer1_largest_ocean,R.string.answer2_largest_ocean,R.string.answer3_largest_ocean))
+                    putAnswers(listOf(R.string.answer1_largest_ocean,R.string.answer2_largest_ocean,R.string.answer3_largest_ocean,R.string.answer4_largest_ocean))
                     putRightAnswer(R.string.answer1_largest_ocean)
                 }
                 listOf(
@@ -28,7 +28,7 @@ class TestRepository() {
             }
             else -> {
                 val answersMath = Answers().apply {
-                    putAnswers(listOf(R.string.answer1_2plus2,R.string.answer2_2plus2,R.string.answer3_2plus2))
+                    putAnswers(listOf(R.string.answer1_2plus2,R.string.answer2_2plus2,R.string.answer3_2plus2,R.string.answer4_2plus2))
                     putRightAnswer(R.string.answer3_2plus2)
                 }
                 listOf(
