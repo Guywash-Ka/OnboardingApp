@@ -54,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarCircular"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="250dp"
         android:layout_height="250dp"
@@ -77,10 +77,58 @@
         android:textSize="40sp"
         android:textAlignment="center"
         android:textColor="@color/grey"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
-        app:layout_constraintEnd_toEndOf="@+id/progressBar"
-        app:layout_constraintStart_toStartOf="@+id/progressBar"
-        app:layout_constraintTop_toTopOf="@+id/progressBar" />
+        app:layout_constraintBottom_toBottomOf="@+id/progressBarCircular"
+        app:layout_constraintEnd_toEndOf="@+id/progressBarCircular"
+        app:layout_constraintStart_toStartOf="@+id/progressBarCircular"
+        app:layout_constraintTop_toTopOf="@+id/progressBarCircular" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/progressBarCircular"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarCircular">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/progressBarHorizontal"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progressDrawable="@drawable/progress_bar_horizontal_limit_drawable"
+                android:secondaryProgress="100"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="25/100xp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/progressBarHorizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/progressBarHorizontal" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

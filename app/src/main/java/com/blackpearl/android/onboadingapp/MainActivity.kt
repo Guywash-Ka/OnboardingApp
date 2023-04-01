@@ -1,6 +1,7 @@
 package com.blackpearl.android.onboadingapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -24,11 +25,13 @@ class MainActivity : AppCompatActivity() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
 //        checkIsLaunch()
+//        getPoints()
 
         val topLevelDestinations = setOf(
             R.id.home_fragment, R.id.profile_fragment,
             R.id.quest_fragment, R.id.calendar_fragment,
-            R.id.challenge_fragment, R.id.register_fragment
+            R.id.challenge_fragment, R.id.register_fragment,
+            R.id.knowledge_fragment
         )
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -52,7 +55,14 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
 
+    private fun getPoints() {
+        binding.apply {
+            mainViewModel.getPoints.observe(this@MainActivity){ points ->
+                Log.d("POINTS_TAG", "$points")
+            }
+        }
     }
 
 
