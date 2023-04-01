@@ -12,4 +12,18 @@
     <string name="Additional_info">mail_ru2003@gmail.com</string>
     <string name="profile_image_description">Profile Image</string>
     <string name="rns_logo">RNS_logo</string>
+    <string name="question_capital_of_australia">Capital of Australia</string>
+    <string name="answer1_capital_of_australia">London</string>
+    <string name="answer2_capital_of_australia">Canberra</string>
+    <string name="answer3_capital_of_australia">Berlin</string>
+    <string name="answer4_capital_of_australia">zxcwqe</string>
+    <string name="question_largest_ocean">Which ocean is the largest?</string>
+    <string name="answer1_largest_ocean">Pacific Ocean</string>
+    <string name="answer2_largest_ocean">Atlantic Ocean</string>
+    <string name="answer3_largest_ocean">Indian Ocean</string>
+    <string name="question_2plus2">2+2=</string>
+    <string name="answer1_2plus2">3</string>
+    <string name="answer2_2plus2">5</string>
+    <string name="answer3_2plus2">4</string>
+    <string name="points">%1$d</string>
 </resources>

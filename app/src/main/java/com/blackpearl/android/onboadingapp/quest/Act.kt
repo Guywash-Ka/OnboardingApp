@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.setPadding
-import coil.load
+import coil.load 
 import com.blackpearl.android.onboadingapp.R
 
 
