@@ -2,72 +2,107 @@ package com.blackpearl.android.onboadingapp
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.blackpearl.android.onboadingapp.databinding.ActivityMainBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var mainViewModel: MainViewModel
+    private lateinit var name: String
+    private lateinit var nameView: TextView
+    private lateinit var dayView: TextView
+    private lateinit var progressHorizontalBarTextView: TextView
+    private lateinit var progressBarCircular: ProgressBar
+    private lateinit var progressBarHorizontal: ProgressBar
+    private val daysAmount = 7
+    private val points = 10
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         // TEST CODE
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
-        val txtProgress: TextView = view.findViewById(R.id.txtProgress)
-        val progressBar: ProgressBar = view.findViewById(R.id.progressBar)
-        var dayNumber: Int = 3
-        val daysAmount = 5
-        progressBar.progress = 100 / daysAmount * dayNumber
-        txtProgress.text = "$dayNumber/$daysAmount\nday"
+        progressBarCircular = view.findViewById(R.id.progressBarCircular)
+        progressBarHorizontal = view.findViewById(R.id.progressBarHorizontal)
+
+        dayView = view.findViewById(R.id.txtProgress)
+        nameView = view.findViewById(R.id.textView)
+        progressHorizontalBarTextView = view.findViewById(R.id.progress_horizontal_text)
+
+        updateName()
+        updateDays()
+        updateProgressHorizontalBar()
+        updateProgressHorizontalBar()
+
+//        val daysAmount = 5 // если надо можно считать с DataStore, но пока отсутсвует в хранилище
+
+//        progressBarCircular.progress = 100 / daysAmount * dayNumber
+//        txtProgress.text = "$dayNumber/$daysAmount\nday"
+//        progressBarHorizontal.progress = 50 // будет передаваться из home
+//        name = "fuck"
+//        getName()
+//        nameView.text = name
         // END OF TEST CODE
 
         return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun updateName() {
+        binding.apply {
+            mainViewModel.getName.observe(viewLifecycleOwner){ nameValue ->
+//                Log.d("NAME_TAG", name)
+                setName(nameValue)
             }
+        }
     }
+
+    private fun updateDays() {
+        binding.apply {
+            mainViewModel.getDay.observe(viewLifecycleOwner) { dayValue ->
+                setDay(dayValue)
+            }
+        }
+    }
+
+    private fun updateProgressHorizontalBar() {
+        binding.apply {
+            mainViewModel.getPoints.observe(viewLifecycleOwner) { points ->
+                setProgressHorizontalBar(points)
+            }
+        }
+    }
+
+    private fun setName(text: String) {
+        nameView.text = text
+    }
+
+    private fun setDay(day: Int) {
+        dayView.text = day.toString()
+        progressBarCircular.progress = 100 / daysAmount * day
+
+    }
+
+    private fun setProgressHorizontalBar(progress: Int) {
+        progressHorizontalBarTextView.text = progress.toString()
+        progressBarHorizontal.progress = progress % 100
+
+    }
+
 }

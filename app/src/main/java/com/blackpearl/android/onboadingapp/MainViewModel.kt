@@ -1,5 +1,4 @@
 package com.blackpearl.android.onboadingapp
-
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.asLiveData
@@ -8,10 +7,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
-
     val dataStore = DataStoreManager(application)
+
     val getIsLaunched = dataStore.getIsLaunched().asLiveData(Dispatchers.IO)
     val getPoints = dataStore.getPoints().asLiveData(Dispatchers.IO)
+    val getName = dataStore.getName().asLiveData(Dispatchers.IO)
+    val getDay = dataStore.getDay().asLiveData(Dispatchers.IO)
 
     fun setIsLaunched(isLaunched: Boolean) {
         viewModelScope.launch {
@@ -22,6 +23,18 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     fun setPoints(points: Int) {
         viewModelScope.launch {
             dataStore.setPoints(points)
+        }
+    }
+
+    fun setName(name: String) {
+        viewModelScope.launch {
+            dataStore.setName(name)
+        }
+    }
+
+    fun setDay(day: Int) {
+        viewModelScope.launch {
+            dataStore.setDay(day)
         }
     }
 

@@ -2,7 +2,6 @@
     <string name="app_name">OnboadingApp</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nav_home">Home</string>
     <string name="nav_profile">Profile</string>
@@ -29,5 +28,7 @@
     <string name="answer4_2plus2">10</string>
     <string name="points">%1$d</string>
     <string name="progressText">5/7\ndays</string>
-    <string name="nav_knowledge">Knowledge</string>
+    <string name="nav_knowledge">Knowledge Base</string>
+    <string name="help_text_for_registration">Enter your name</string>
+    <string name="button_registration_text">Подтвердить</string>
 </resources>

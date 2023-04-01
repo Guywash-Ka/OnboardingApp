@@ -1,59 +1,80 @@
 package com.blackpearl.android.onboadingapp
 
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.drawerlayout.widget.DrawerLayout.*
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.blackpearl.android.onboadingapp.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [RegisterFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RegisterFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_register, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RegisterFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RegisterFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        disableNavigation(requireActivity())
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
+
+        val registerButton: Button = requireActivity().findViewById(R.id.registerButton)
+        val nameEditText: EditText = requireActivity().findViewById(R.id.editTextTextPersonName)
+
+        registerButton.setOnClickListener {
+            if (!TextUtils.isEmpty(nameEditText.text.toString())) {
+                mainViewModel.setName(nameEditText.text.toString())
+                findNavController().popBackStack()
             }
+        }
+
+
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        enableNavigation(requireActivity())
+    }
+
+    private fun disableNavigation(activity: FragmentActivity) {
+        val bottomNavView: BottomNavigationView = activity.findViewById(R.id.bottomNavigation)
+        val drawerLayout: DrawerLayout = activity.findViewById(R.id.drawer_layout)
+        val toolbar: Toolbar = activity.findViewById(R.id.toolbar)
+
+        drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
+        toolbar.visibility = View.GONE
+        bottomNavView.visibility = View.GONE
+    }
+
+    private fun enableNavigation(activity: FragmentActivity) {
+        val bottomNavView: BottomNavigationView = activity.findViewById(R.id.bottomNavigation)
+        val drawerLayout: DrawerLayout = activity.findViewById(R.id.drawer_layout)
+        val toolbar: Toolbar = activity.findViewById(R.id.toolbar)
+
+        drawerLayout.setDrawerLockMode(LOCK_MODE_UNLOCKED)
+        toolbar.visibility = View.VISIBLE
+        bottomNavView.visibility = View.VISIBLE
+    }
+
 }

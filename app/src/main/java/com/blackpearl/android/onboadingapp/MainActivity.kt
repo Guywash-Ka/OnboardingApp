@@ -1,7 +1,9 @@
 package com.blackpearl.android.onboadingapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -23,12 +25,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-//        checkIsLaunch()
+        checkIsLaunch()
+        mainViewModel.setDay(4)
+        mainViewModel.setPoints(140)
+//        getPoints()
+//        getName()
 
         val topLevelDestinations = setOf(
             R.id.home_fragment, R.id.profile_fragment,
             R.id.quest_fragment, R.id.calendar_fragment,
-            R.id.challenge_fragment, R.id.register_fragment
+            R.id.challenge_fragment, R.id.register_fragment,
+            R.id.knowledge_fragment
         )
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -44,16 +51,37 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
-    fun checkIsLaunch() {
+    private fun checkIsLaunch() {
         binding.apply {
             mainViewModel.getIsLaunched.observe(this@MainActivity){ isLaunched ->
                 if (!isLaunched) {
                     findNavController(R.id.nav_host_fragment).navigate(R.id.register_fragment)
                 }
             }
+            mainViewModel.setIsLaunched(true)
         }
-
     }
+
+    private fun getPoints() {
+        binding.apply {
+            mainViewModel.getPoints.observe(this@MainActivity){ pointsVal ->
+                Log.d("POINTS_TAG", "$pointsVal")
+                pointsVal
+            }
+        }
+    }
+
+    private fun getName() {
+        binding.apply {
+            mainViewModel.getName.observe(this@MainActivity){ name ->
+                Log.d("NAME_TAG", name)
+            }
+        }
+    }
+
+//    fun getName(): String? {
+//        return mainViewModel.name
+//    }
 
 
 }

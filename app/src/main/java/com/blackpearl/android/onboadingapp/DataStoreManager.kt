@@ -11,11 +11,10 @@ import kotlinx.coroutines.flow.map
 import java.io.IOException
 
 const val FILENAME = "Settings"
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = FILENAME)
 
 class DataStoreManager(context: Context) {
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = FILENAME)
     private val dataStore = context.dataStore
-
     private object PreferencesKeys{
         val NAME = stringPreferencesKey("name")
         val DAY = intPreferencesKey("day")
@@ -47,16 +46,32 @@ class DataStoreManager(context: Context) {
         }
     }
 
-    suspend fun getName(): String {
-        return dataStore.data.firstOrNull()
-            ?.get(PreferencesKeys.NAME)
-            .let { it!! }
+    fun getName(): Flow<String> {
+        return dataStore.data.catch { exception ->
+            if (exception is IOException) {
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+            .map { pref ->
+                val name = pref[PreferencesKeys.NAME] ?: "Алекс Алексеев"
+                name
+            }
     }
 
-    suspend fun getDay(): Int {
-        return dataStore.data.firstOrNull()
-            ?.get(PreferencesKeys.DAY)
-            .let { it!! }
+    fun getDay(): Flow<Int> {
+        return dataStore.data.catch { exception ->
+            if (exception is IOException) {
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+            .map { pref ->
+                val day = pref[PreferencesKeys.DAY] ?: 1
+                day
+            }
     }
 
     fun getIsLaunched(): Flow<Boolean> {
@@ -86,5 +101,4 @@ class DataStoreManager(context: Context) {
                 points
             }
     }
-
 }
