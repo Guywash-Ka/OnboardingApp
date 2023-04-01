@@ -46,7 +46,7 @@ class DataStoreManager(context: Context) {
         }
     }
 
-    suspend fun getName(): Flow<String> {
+    fun getName(): Flow<String> {
         return dataStore.data.catch { exception ->
             if (exception is IOException) {
                 emit(emptyPreferences())
@@ -60,7 +60,7 @@ class DataStoreManager(context: Context) {
             }
     }
 
-    suspend fun getDay(): Flow<Int> {
+    fun getDay(): Flow<Int> {
         return dataStore.data.catch { exception ->
             if (exception is IOException) {
                 emit(emptyPreferences())

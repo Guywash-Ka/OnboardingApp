@@ -26,7 +26,10 @@ class MainActivity : AppCompatActivity() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         checkIsLaunch()
+        mainViewModel.setDay(4)
+        mainViewModel.setPoints(140)
 //        getPoints()
+//        getName()
 
         val topLevelDestinations = setOf(
             R.id.home_fragment, R.id.profile_fragment,
@@ -48,23 +51,37 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
-    fun checkIsLaunch() {
+    private fun checkIsLaunch() {
         binding.apply {
             mainViewModel.getIsLaunched.observe(this@MainActivity){ isLaunched ->
                 if (!isLaunched) {
                     findNavController(R.id.nav_host_fragment).navigate(R.id.register_fragment)
                 }
             }
+            mainViewModel.setIsLaunched(true)
         }
     }
 
     private fun getPoints() {
         binding.apply {
-            mainViewModel.getPoints.observe(this@MainActivity){ points ->
-                Log.d("POINTS_TAG", "$points")
+            mainViewModel.getPoints.observe(this@MainActivity){ pointsVal ->
+                Log.d("POINTS_TAG", "$pointsVal")
+                pointsVal
             }
         }
     }
+
+    private fun getName() {
+        binding.apply {
+            mainViewModel.getName.observe(this@MainActivity){ name ->
+                Log.d("NAME_TAG", name)
+            }
+        }
+    }
+
+//    fun getName(): String? {
+//        return mainViewModel.name
+//    }
 
 
 }
