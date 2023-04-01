@@ -43,6 +43,9 @@
         <argument
             android:name="day"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_quest_fragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
     </fragment>
     <fragment
         android:id="@+id/profile_fragment"
@@ -92,5 +95,36 @@
         <argument
             android:name="topic"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.blackpearl.android.onboadingapp.QuizFragment"
+        android:label="QuizFragment" >
+        <argument
+            android:name="testId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_quizFragment_to_testPassedFragment"
+            app:destination="@id/testPassedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/testPassedFragment"
+        android:name="com.blackpearl.android.onboadingapp.TestPassedFragment"
+        android:label="TestPassedFragment" >
+        <argument
+            android:name="testId"
+            app:argType="integer" />
+        <argument
+            android:name="testResult"
+            app:argType="integer" />
+        <argument
+            android:name="rightAnswers"
+            app:argType="integer" />
+        <argument
+            android:name="questionAmount"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_testPassedFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
     </fragment>
 </navigation>
