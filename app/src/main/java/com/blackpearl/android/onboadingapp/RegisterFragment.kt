@@ -12,15 +12,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.drawerlayout.widget.DrawerLayout.*
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.blackpearl.android.onboadingapp.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class RegisterFragment : Fragment() {
 
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var mainViewModel: MainViewModel
+    private val mainActivityViewModel: MainActivityViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,21 +32,15 @@ class RegisterFragment : Fragment() {
 
         disableNavigation(requireActivity())
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-
-
         val registerButton: Button = requireActivity().findViewById(R.id.registerButton)
         val nameEditText: EditText = requireActivity().findViewById(R.id.editTextTextPersonName)
 
         registerButton.setOnClickListener {
             if (!TextUtils.isEmpty(nameEditText.text.toString())) {
-                mainViewModel.setName(nameEditText.text.toString())
+                mainActivityViewModel.setName(nameEditText.text.toString())
                 findNavController().popBackStack()
             }
         }
-
-
     }
 
     override fun onDestroyView() {
