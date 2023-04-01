@@ -1,7 +1,6 @@
 package com.blackpearl.android.onboadingapp
 
 import android.content.Context
-import android.view.ViewGroup
 import com.blackpearl.android.onboadingapp.quest.Scenario
 
 class ScenarioRepository(
@@ -18,9 +17,15 @@ class ScenarioRepository(
             1 -> {
                 Scenario(context, nextActCallback)
                     .addAct {
-                        it.addNarrator(str, "go go go", R.drawable.cat)
-                    }.addAct {
-                        it.addNarrator("Act II. Zaebis", "Da", R.drawable.cat_2)
+                        it.useNarratorScene(str, "go go go", R.drawable.cat)
+                    }
+                    .addAct {
+                        it.useTextScene("Не то чтоб он был так труслив и забит, совсем даже напротив; но с некоторого времени он был в раздражительном и напряженном состоянии, похожем на ипохондрию. Он до того углубился в себя и уединился от всех, что боялся даже всякой встречи, не только встречи с хозяйкой. Он был задавлен бедностью; но даже стесненное положение перестало в последнее время тяготить его. Насущными делами своими он совсем перестал и не хотел заниматься. Никакой хозяйки, в сущности, он не боялся, что бы та ни замышляла против него. Но останавливаться на лестнице, слушать всякий вздор про всю эту обыденную дребедень, до которой ему нет никакого дела, все эти приставания о платеже, угрозы, жалобы, и при этом самому изворачиваться, извиняться, лгать, — нет уж, лучше проскользнуть как-нибудь кошкой по лестнице и улизнуть, чтобы никто не видал.\n" +
+                                "Впрочем, на этот раз страх встречи с своею кредиторшей даже его самого поразил по выходе на улицу.", "Интересно")
+                        it.addTest(1)
+                    }
+                    .addAct {
+                        it.useNarratorScene("Act II. Zaebis", "Da", R.drawable.cat_2)
                     }
             }
 
@@ -28,9 +33,9 @@ class ScenarioRepository(
 
                 Scenario(context, nextActCallback)
                     .addAct {
-                        it.addNarrator("Act III. Pizdec", "go go go")
+                        it.useNarratorScene("Act III. Pizdec", "go go go")
                     }.addAct {
-                        it.addNarrator("Act IIVDFSD. Zaebis", "Da")
+                        it.useNarratorScene("Act IIVDFSD. Zaebis", "Da")
                     }
             }
 

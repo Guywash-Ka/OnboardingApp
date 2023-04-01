@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_home" >
 
         <action
-            android:id="@+id/action_home_fragment_to_quest_fragment"
+            android:id="@+id/start_quest"
             app:destination="@id/quest_fragment" />
         <action
             android:id="@+id/action_home_fragment_to_calendar_fragment"
@@ -39,7 +39,11 @@
         android:id="@+id/quest_fragment"
         android:name="com.blackpearl.android.onboadingapp.QuestFragment"
         android:label="fragment_quest"
-        tools:layout="@layout/fragment_quest" />
+        tools:layout="@layout/fragment_quest" >
+        <argument
+            android:name="day"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/profile_fragment"
         android:name="com.blackpearl.android.onboadingapp.ProfileFragment"
@@ -60,5 +64,33 @@
         android:id="@+id/knowledge_fragment"
         android:name="com.blackpearl.android.onboadingapp.KnowledgeFragment"
         android:label="fragment_knowledge"
-        tools:layout="@layout/fragment_knowledge" />
+        tools:layout="@layout/fragment_knowledge" >
+        <action
+            android:id="@+id/show_topics"
+            app:destination="@id/knowledgeTopicsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/knowledgeTopicsFragment"
+        android:name="com.blackpearl.android.onboadingapp.KnowledgeTopicsFragment"
+        android:label="fragment_knowledge_topics"
+        tools:layout="@layout/fragment_knowledge_topics" >
+        <argument
+            android:name="book"
+            app:argType="integer" />
+        <action
+            android:id="@+id/show_theory"
+            app:destination="@id/knowledgeTheoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/knowledgeTheoryFragment"
+        android:name="com.blackpearl.android.onboadingapp.KnowledgeTheoryFragment"
+        android:label="fragment_knowledge_theory"
+        tools:layout="@layout/fragment_knowledge_theory" >
+        <argument
+            android:name="book"
+            app:argType="integer" />
+        <argument
+            android:name="topic"
+            app:argType="integer" />
+    </fragment>
 </navigation>
