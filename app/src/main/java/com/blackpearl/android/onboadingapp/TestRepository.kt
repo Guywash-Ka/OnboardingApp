@@ -22,7 +22,7 @@ class TestRepository() {
                 }
                 listOf(
                     Question(R.string.question_capital_of_australia,answers1,1),
-                    Question(R.string.question_largest_ocean,answers2,2)
+                    Question(R.string.question_largest_ocean,answers2,1)
 
                 )
             }

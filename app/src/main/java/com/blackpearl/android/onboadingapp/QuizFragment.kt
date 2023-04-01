@@ -33,8 +33,7 @@ class QuizFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-    _binding =
-        FragmentQuizBinding.inflate(inflater,container,false)
+        _binding = FragmentQuizBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -46,11 +45,11 @@ class QuizFragment: Fragment() {
 
     private fun updateQuestion() {
         val inflater = LayoutInflater.from(context)
-        if (quizViewModel.currentIndex == quizViewModel.test.size)
-        {
+        if (quizViewModel.currentIndex == quizViewModel.test.size) {
             //Test has finished
             setFragmentResult(REQUEST_KEY_POINTS, bundleOf(BUNDLE_KEY_POINTS to quizViewModel.points))
             findNavController().popBackStack()
+            return
         }
         when(quizViewModel.currentQuestionType) {
             1 -> {
