@@ -1,6 +1,7 @@
 package com.blackpearl.android.onboadingapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,12 +61,15 @@ class QuestFragment : Fragment() {
 
             layout.findViewById<Button>(R.id.quest_next_button).setOnClickListener {
 
-                findNavController().navigate(R.id.profile_fragment)
+                questViewModel.updateIndex(actIndex+1)
+                findNavController().navigate(
+                    QuestFragmentDirections.actionQuestFragmentToQuizFragment(1)
+                )
 
-                setFragmentResultListener("KEY_BLAH_BLAH") { _, res ->
+                setFragmentResultListener(QuizFragment.REQUEST_KEY_POINTS) { _, res ->
                     // And only when you acquired it - go next
-                    // res.getInt("KEY_POINTS")
-                    updateUI(actIndex+1)
+                    val points = res.getInt(QuizFragment.BUNDLE_KEY_POINTS)
+                    Log.i("QuestFragment", "$points")
                 }
 
             }
