@@ -22,7 +22,6 @@
         android:id="@+id/answer1_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="120dp"
         android:background="@drawable/answer_background"
         android:text="answer1"
