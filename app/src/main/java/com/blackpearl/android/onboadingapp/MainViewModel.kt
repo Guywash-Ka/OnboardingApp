@@ -25,4 +25,10 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    fun setName(name: String) {
+        viewModelScope.launch {
+            dataStore.setName(name)
+        }
+    }
+
 }

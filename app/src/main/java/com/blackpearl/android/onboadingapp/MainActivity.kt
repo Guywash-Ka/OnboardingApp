@@ -3,6 +3,7 @@ package com.blackpearl.android.onboadingapp
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-//        checkIsLaunch()
+        checkIsLaunch()
 //        getPoints()
 
         val topLevelDestinations = setOf(

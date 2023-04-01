@@ -14,4 +14,6 @@
     <string name="rns_logo">RNS_logo</string>
     <string name="progressText">5/7\ndays</string>
     <string name="nav_knowledge">Knowledge Base</string>
+    <string name="help_text_for_registration">Enter your name</string>
+    <string name="button_registration_text">Подтвердить</string>
 </resources>
