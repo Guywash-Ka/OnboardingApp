@@ -6,39 +6,46 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blackpearl.android.onboadingapp.databinding.FragmentKnowledgeBinding
+import com.blackpearl.android.onboadingapp.databinding.FragmentKnowledgeTopicsBinding
 import com.blackpearl.android.onboadingapp.knowledge.KnowledgeRepository
-import com.blackpearl.android.onboadingapp.knowledge.LibraryAdapter
+import com.blackpearl.android.onboadingapp.knowledge.TopicsAdapter
 
-class KnowledgeFragment : Fragment() {
+class KnowledgeTopicsFragment : Fragment() {
 
-    private var _binding: FragmentKnowledgeBinding? = null
+    private val args: KnowledgeTopicsFragmentArgs by navArgs()
+
+    private var _binding: FragmentKnowledgeTopicsBinding? = null
     private val binding
-        get() = checkNotNull(_binding) { "FragmentKnowledgeBinding is null" }
+        get() = checkNotNull(_binding) { "FragmentKnowledgeTopicsBinding is null" }
+
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentKnowledgeBinding.inflate(inflater, container, false)
+        _binding = FragmentKnowledgeTopicsBinding.inflate(inflater, container, false)
+
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val repository = KnowledgeRepository()
-        val books = repository.getBooks()
+        val topics = KnowledgeRepository().getTopics(args.book)
 
-        binding.recyclerView.adapter = LibraryAdapter(books) { book ->
+        binding.recyclerView.adapter = TopicsAdapter(topics) { topic ->
             findNavController().navigate(
-                KnowledgeFragmentDirections.showTopics(book.id)
+                KnowledgeTopicsFragmentDirections.showTheory(args.book, topic.id)
             )
         }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

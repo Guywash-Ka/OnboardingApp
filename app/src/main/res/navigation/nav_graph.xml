@@ -64,5 +64,33 @@
         android:id="@+id/knowledge_fragment"
         android:name="com.blackpearl.android.onboadingapp.KnowledgeFragment"
         android:label="fragment_knowledge"
-        tools:layout="@layout/fragment_knowledge" />
+        tools:layout="@layout/fragment_knowledge" >
+        <action
+            android:id="@+id/show_topics"
+            app:destination="@id/knowledgeTopicsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/knowledgeTopicsFragment"
+        android:name="com.blackpearl.android.onboadingapp.KnowledgeTopicsFragment"
+        android:label="fragment_knowledge_topics"
+        tools:layout="@layout/fragment_knowledge_topics" >
+        <argument
+            android:name="book"
+            app:argType="integer" />
+        <action
+            android:id="@+id/show_theory"
+            app:destination="@id/knowledgeTheoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/knowledgeTheoryFragment"
+        android:name="com.blackpearl.android.onboadingapp.KnowledgeTheoryFragment"
+        android:label="fragment_knowledge_theory"
+        tools:layout="@layout/fragment_knowledge_theory" >
+        <argument
+            android:name="book"
+            app:argType="integer" />
+        <argument
+            android:name="topic"
+            app:argType="integer" />
+    </fragment>
 </navigation>

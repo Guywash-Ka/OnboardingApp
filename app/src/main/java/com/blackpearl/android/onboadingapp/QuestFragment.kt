@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.blackpearl.android.onboadingapp.databinding.FragmentQuestBinding
@@ -16,9 +19,12 @@ class QuestFragment : Fragment() {
     private val binding
         get() = checkNotNull(_binding) { "FragmentQuestBinding is null" }
 
-    private lateinit var scenario: Scenario
-
     private val args: QuestFragmentArgs by navArgs()
+
+    private val questViewModel: QuestViewModel by viewModels()
+
+    // Scenario must be regenerated for any new context
+    private lateinit var scenario: Scenario
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,16 +33,17 @@ class QuestFragment : Fragment() {
     ): View? {
         _binding = FragmentQuestBinding.inflate(inflater, container, false)
 
-        val repo = ScenarioRepository(requireContext(), ::updateUI)
+        scenario = ScenarioRepository(requireContext(), ::updateUI).getScenario(args.day)
 
-        scenario = repo.getScenario(args.day)
-
-        updateUI(0)
+        // updateUI is called every time user pressed next button in Act
+        updateUI(questViewModel.getActIndex())
 
         return binding.root
     }
 
     private fun updateUI(actIndex: Int) {
+
+        questViewModel.updateIndex(actIndex)
 
         if (scenario.size()-1 < actIndex) {
             // This is over
@@ -46,9 +53,27 @@ class QuestFragment : Fragment() {
 
         val act = scenario.getAct(actIndex)
 
+        val layout = act.getMotionLayout()
+
+        act.getTestId()?.also {
+            // We have a test
+
+            layout.findViewById<Button>(R.id.quest_next_button).setOnClickListener {
+
+                findNavController().navigate(R.id.profile_fragment)
+
+                setFragmentResultListener("KEY_BLAH_BLAH") { _, res ->
+                    // And only when you acquired it - go next
+                    // res.getInt("KEY_POINTS")
+                    updateUI(actIndex+1)
+                }
+
+            }
+        }
+
         binding.root.removeAllViews()
 
-        binding.root.addView(act.getMotionLayout())
+        binding.root.addView(layout)
 
     }
 }
