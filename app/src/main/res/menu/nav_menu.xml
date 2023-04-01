@@ -20,6 +20,9 @@
             android:id="@+id/calendar_fragment"
             android:icon="@android:drawable/ic_menu_my_calendar"
             android:title="@string/nav_calendar"/>
+        <item android:id="@+id/knowledge_fragment"
+            android:icon="@android:drawable/ic_lock_idle_alarm"
+            android:title="@string/nav_knowledge"/>
     </group>
     <item
         android:title="">
