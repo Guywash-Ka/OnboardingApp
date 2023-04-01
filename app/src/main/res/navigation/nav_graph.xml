@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_home_fragment_to_profile_fragment"
             app:destination="@id/profile_fragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_knowledge"
+            app:destination="@id/knowledge_fragment" />
     </fragment>
     <fragment
         android:id="@+id/quest_fragment"
@@ -52,8 +55,10 @@
         android:name="com.blackpearl.android.onboadingapp.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" >
-        <action
-            android:id="@+id/action_calendar_fragment_to_challenge_fragment"
-            app:destination="@id/challenge_fragment" />
     </fragment>
+    <fragment
+        android:id="@+id/knowledge_fragment"
+        android:name="com.blackpearl.android.onboadingapp.KnowledgeFragment"
+        android:label="fragment_knowledge"
+        tools:layout="@layout/fragment_knowledge" />
 </navigation>
