@@ -34,7 +34,7 @@ class QuizFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
     _binding =
-        FragmentQuizBinding.inflate(layoutInflater,container,false)
+        FragmentQuizBinding.inflate(inflater,container,false)
         return binding.root
     }
 
