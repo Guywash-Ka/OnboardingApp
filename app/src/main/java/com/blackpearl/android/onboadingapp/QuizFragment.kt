@@ -1,5 +1,12 @@
 package com.blackpearl.android.onboadingapp
 
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.drawable.Animatable2.AnimationCallback
+import android.graphics.drawable.AnimationDrawable
+import android.graphics.drawable.ColorStateListDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.text.Editable
@@ -24,6 +31,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import org.w3c.dom.Text
 import java.util.*
+
 
 class QuizFragment: Fragment() {
 
@@ -69,6 +77,7 @@ class QuizFragment: Fragment() {
 
         when(quizViewModel.currentQuestionType) {
             1 -> {
+
                 //show first views
                 val layout = layoutInflater.inflate(R.layout.question_type1,binding.root,false)
                 binding.fragmentQuiz.removeAllViews()
@@ -83,12 +92,14 @@ class QuizFragment: Fragment() {
                 questionTextView.setText(quizViewModel.currentQuestionResId)
                 answersIdList.forEachIndexed { index, elem ->
                     layout.findViewById<TextView>(elem).apply {
+
                         val answerTextId = quizViewModel.currentQuestionAnswers.getAnswers()[index]
                         setText(answerTextId)
                         setOnClickListener {view: View ->
                             (layout as MotionLayout).transitionToStart {
                                 if(checkAnswer(getString(answerTextId),1)) {
                                     //GREEN
+
                                 }
 
                                 else {
@@ -97,7 +108,8 @@ class QuizFragment: Fragment() {
 
                                 quizViewModel.currentIndex += 1
                                 updateQuestion()
-                            }
+                            }+
+
                         }
                     }
                 }
