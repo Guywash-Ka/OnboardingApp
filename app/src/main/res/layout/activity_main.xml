@@ -63,6 +63,7 @@
             app:itemTextColor="@color/white"
             app:menu="@menu/nav_menu"
             tools:ignore="MissingConstraints" />
+
     </androidx.drawerlayout.widget.DrawerLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

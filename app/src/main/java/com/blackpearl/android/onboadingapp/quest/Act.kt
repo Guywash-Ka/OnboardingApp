@@ -78,6 +78,32 @@ class Act(
 
     }
 
+    fun useImageTextScene(text1: String, text2: String, imageId: Int, buttonText: String) {
+        val inflater = LayoutInflater.from(context)
+
+        motionLayout = (inflater.inflate(R.layout.qeust_image_text, null) as MotionLayout)
+            .also { layout ->
+
+                layout.layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
+
+                val text_1 = layout.findViewById<TextView>(R.id.text_1)
+                val text_2 = layout.findViewById<TextView>(R.id.text_2)
+                val button = layout.findViewById<Button>(R.id.quest_next_button)
+                val image = layout.findViewById<ImageView>(R.id.image)
+
+
+                text_1.text = text1
+                text_2.text = text2
+                button.text = buttonText
+                image.load(imageId)
+
+                button.setOnClickListener { nextActCallback(index + 1) }
+            }
+    }
+
     fun addTest(id: Int) {
         testId = id
     }
