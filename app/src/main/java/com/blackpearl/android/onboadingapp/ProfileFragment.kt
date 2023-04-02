@@ -26,12 +26,12 @@ class ProfileFragment : Fragment() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        val dayNumber = 6 // будут передаваться из home
+        val dayNumber = 4 // будут передаваться из home
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         val txtProgress: TextView = view.findViewById(R.id.txtProgress)
         val progressBarCircular: ProgressBar = view.findViewById(R.id.progressBarCircular)
         val progressBarHorizontal: ProgressBar = view.findViewById(R.id.progressBarHorizontal)
-        val daysAmount = 5 // если надо можно считать с DataStore, но пока отсутсвует в хранилище
+        val daysAmount = 7 // если надо можно считать с DataStore, но пока отсутсвует в хранилище
 
         progressBarCircular.progress = 100 / daysAmount * dayNumber
         txtProgress.text = "$dayNumber/$daysAmount\nday"
