@@ -12,7 +12,6 @@ import com.blackpearl.android.onboadingapp.knowledge.KnowledgeRepository
 import com.blackpearl.android.onboadingapp.knowledge.LibraryAdapter
 
 class KnowledgeFragment : Fragment() {
-
     private var _binding: FragmentKnowledgeBinding? = null
     private val binding
         get() = checkNotNull(_binding) { "FragmentKnowledgeBinding is null" }

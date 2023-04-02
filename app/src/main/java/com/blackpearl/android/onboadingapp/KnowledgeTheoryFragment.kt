@@ -11,30 +11,22 @@ import com.blackpearl.android.onboadingapp.databinding.FragmentKnowledgeTheoryBi
 import com.blackpearl.android.onboadingapp.knowledge.KnowledgeRepository
 
 class KnowledgeTheoryFragment : Fragment() {
-
     private val args: KnowledgeTheoryFragmentArgs by navArgs()
 
     private var _binding: FragmentKnowledgeTheoryBinding? = null
     private val binding
         get() = checkNotNull(_binding) { "FragmentKnowledgeTheoryBinding is null" }
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentKnowledgeTheoryBinding.inflate(inflater, container, false)
-
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         val theory = KnowledgeRepository().getTheory(args.book, args.topic)
-
         binding.text.text = theory
     }
 

@@ -54,7 +54,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/challenge_fragment"
-        android:name="com.blackpearl.android.onboadingapp.ChallengeFragment"
+        android:name="com.blackpearl.android.onboadingapp.MapFragment"
         android:label="fragment_challenge"
         tools:layout="@layout/fragment_challenge" >
         <action

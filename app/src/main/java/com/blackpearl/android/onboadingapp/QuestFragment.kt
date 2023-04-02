@@ -58,8 +58,6 @@ class QuestFragment : Fragment() {
 
 
         act.getTestId()?.also { testId ->
-            // We have a test
-
             layout.findViewById<Button>(R.id.quest_next_button).setOnClickListener {
 
                 questViewModel.updateIndex(actIndex+1)

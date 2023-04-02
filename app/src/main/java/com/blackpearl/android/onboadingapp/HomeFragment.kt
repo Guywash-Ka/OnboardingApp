@@ -13,7 +13,6 @@ import com.blackpearl.android.onboadingapp.databinding.FragmentHomeBinding
 import com.blackpearl.android.onboadingapp.databinding.FragmentQuestBinding
 
 class HomeFragment : Fragment() {
-
     private var _binding: FragmentHomeBinding? = null
     private val binding
         get() = checkNotNull(_binding) { "FragmentHomeBinding is null" }
@@ -22,10 +21,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-
         return binding.root
     }
 
@@ -33,13 +29,11 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-
             day1.setOnClickListener {
                 findNavController().navigate(
                     HomeFragmentDirections.startQuest(1)
                 )
             }
-
             day2.setOnClickListener {
                 findNavController().navigate(
                     HomeFragmentDirections.startQuest(2)
@@ -50,13 +44,11 @@ class HomeFragment : Fragment() {
                     HomeFragmentDirections.startQuest(3)
                 )
             }
-
             day4.setOnClickListener {
                 findNavController().navigate(
                     HomeFragmentDirections.startQuest(4)
                 )
             }
-
             day5.setOnClickListener {
                 findNavController().navigate(
                     HomeFragmentDirections.startQuest(5)

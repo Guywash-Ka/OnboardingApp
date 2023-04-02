@@ -10,23 +10,21 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.blackpearl.android.onboadingapp.databinding.ActivityMainBinding
-
+import com.blackpearl.android.onboadingapp.databinding.FragmentProfileBinding
 
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var mainViewModel: MainViewModel
-    private lateinit var name: String
-    private lateinit var nameView: TextView
-    private lateinit var dayView: TextView
-    private lateinit var progressHorizontalBarTextView: TextView
-    private lateinit var lvlTextView: TextView
-    private lateinit var progressBarCircular: ProgressBar
-    private lateinit var progressBarHorizontal: ProgressBar
+    private var _binding: FragmentProfileBinding? = null
+    private val binding: FragmentProfileBinding
+        get() = checkNotNull(_binding) { "FragmentProfileBinding is null" }
+
+    private val mainViewModel: MainViewModel by viewModels()
+
     private val daysAmount = 7
     private val points = 10
 
@@ -34,35 +32,9 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        // TEST CODE
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-
-        val dayNumber = 2
-        val view = inflater.inflate(R.layout.fragment_profile, container, false)
-        val txtProgress: TextView = view.findViewById(R.id.txtProgress)
-        nameView = view.findViewById(R.id.textView)
-        lvlTextView = view.findViewById(R.id.lvl_text)
-        progressBarCircular = view.findViewById(R.id.progressBarCircular)
-        progressBarHorizontal = view.findViewById(R.id.progressBarHorizontal)
-
-        dayView = view.findViewById(R.id.txtProgress)
-        nameView = view.findViewById(R.id.textView)
-        progressHorizontalBarTextView = view.findViewById(R.id.progress_horizontal_text)
-
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
         updateUI()
-
-
-//        progressBarCircular.progress = 100 / daysAmount * dayNumber
-//        txtProgress.text = "$dayNumber/$daysAmount\nday"
-//        progressBarHorizontal.progress = 50 // будет передаваться из home
-//        name = "fuck"
-//        getName()
-//        nameView.text = name
-        // END OF TEST CODE
-
-        return view
+        return binding.root
     }
 
     private fun updateName() {
@@ -91,23 +63,23 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setName(text: String) {
-        nameView.text = text
+        binding.textView.text = text
     }
 
     private fun setDay(day: Int) {
-        dayView.text = if (day <= daysAmount){
+        binding.txtProgress.text = if (day <= daysAmount){
             "${day}/$daysAmount\ndays"
             } else {
                 "$day\ndays"
         }
-        progressBarCircular.progress = 100 / daysAmount * day
+        binding.progressBarCircular.progress = 100 / daysAmount * day
 
     }
 
     private fun setProgressHorizontalBar(progress: Int) {
-        progressHorizontalBarTextView.text = "$progress/${progress / 100 * 100 + 100}"
-        progressBarHorizontal.progress = progress % 100
-        lvlTextView.text = "Lvl. ${progress/100}"
+        binding.progressHorizontalText.text = "$progress/${progress / 100 * 100 + 100}"
+        binding.progressBarHorizontal.progress = progress % 100
+        binding.lvlText.text = "Lvl. ${progress/100}"
 
     }
 
