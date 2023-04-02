@@ -79,9 +79,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    fun getName(): String? {
-//        return mainViewModel.name
-//    }
-
 
 }
