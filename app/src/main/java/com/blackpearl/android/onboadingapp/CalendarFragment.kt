@@ -24,9 +24,7 @@ class CalendarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentCalendarBinding.inflate(inflater, container, false)
-
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
-
         return binding.root
     }
 

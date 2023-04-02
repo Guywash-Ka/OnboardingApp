@@ -8,26 +8,22 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
 
-class ChallengeFragment : Fragment() {
+class MapFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.fragment_challenge, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val button = view?.findViewById<Button>(R.id.button)
-
-        button?.setOnClickListener {
+        view.findViewById<Button>(R.id.button).setOnClickListener {
             findNavController().navigate(
-                ChallengeFragmentDirections.actionChallengeFragmentToQuestFragment(-1)
+                MapFragmentDirections.actionChallengeFragmentToQuestFragment(-1)
             )
         }
     }
-
 }
