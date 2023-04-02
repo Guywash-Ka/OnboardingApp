@@ -45,16 +45,15 @@ class ScenarioRepository(
             -1 -> {
                 Scenario(context, nextActCallback)
                     .addAct {
-                        it.useNarratorScene("Игорь" +
+                        it.useNarratorScene("Игорь\n" +
                                 "Умеет то и се", "Приятно познакомится")
                     }.addAct {
-                        it.useNarratorScene("Райан" +
-                                "Гослинг", "Приятно познакомится")
+                        it.useNarratorScene("Райан Гослинг", "Приятно познакомится")
                     }.addAct {
-                        it.useNarratorScene("Игорь" +
+                        it.useNarratorScene("Игорь\n" +
                                 "Умеет то и се", "Приятно познакомится")
                     }.addAct {
-                        it.useNarratorScene("Игорь" +
+                        it.useNarratorScene("Игорь\n" +
                                 "Умеет то и се", "Приятно познакомится")
                     }
             }
