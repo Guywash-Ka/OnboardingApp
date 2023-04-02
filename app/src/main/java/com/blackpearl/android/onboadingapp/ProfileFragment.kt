@@ -26,9 +26,10 @@ class ProfileFragment : Fragment() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        val dayNumber = 4 // будут передаваться из home
+        val dayNumber = 2// будут передаваться из home
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         val txtProgress: TextView = view.findViewById(R.id.txtProgress)
+        val nameView: TextView = view.findViewById(R.id.textView)
         val progressBarCircular: ProgressBar = view.findViewById(R.id.progressBarCircular)
         val progressBarHorizontal: ProgressBar = view.findViewById(R.id.progressBarHorizontal)
         val daysAmount = 7 // если надо можно считать с DataStore, но пока отсутсвует в хранилище
