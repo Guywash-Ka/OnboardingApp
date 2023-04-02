@@ -2,36 +2,43 @@ package com.blackpearl.android.onboadingapp
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.*
 import com.blackpearl.android.onboadingapp.databinding.ActivityMainBinding
-import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var mainViewModel: MainViewModel
+    private lateinit var dataStoreManager: DataStoreManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        dataStoreManager = DataStoreManager(application)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
+        checkIsLaunch()
+        mainViewModel.setDay(4)
+        mainViewModel.setPoints(140)
+//        getPoints()
+//        getName()
+
         val topLevelDestinations = setOf(
             R.id.home_fragment, R.id.profile_fragment,
             R.id.quest_fragment, R.id.calendar_fragment,
             R.id.challenge_fragment, R.id.register_fragment,
             R.id.knowledge_fragment
         )
+
+
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
@@ -45,4 +52,34 @@ class MainActivity : AppCompatActivity() {
         return findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
+    private fun checkIsLaunch() {
+        binding.apply {
+            mainViewModel.getIsLaunched.observe(this@MainActivity){ isLaunched ->
+                if (!isLaunched) {
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.register_fragment)
+                }
+            }
+            mainViewModel.setIsLaunched(true)
+        }
+    }
+
+    private fun getPoints() {
+        binding.apply {
+            mainViewModel.getPoints.observe(this@MainActivity){ pointsVal ->
+                Log.d("POINTS_TAG", "$pointsVal")
+                pointsVal
+            }
+        }
+    }
+
+    private fun getName() {
+        binding.apply {
+            mainViewModel.getName.observe(this@MainActivity){ name ->
+                Log.d("NAME_TAG", name)
+            }
+        }
+    }
+
+
 }

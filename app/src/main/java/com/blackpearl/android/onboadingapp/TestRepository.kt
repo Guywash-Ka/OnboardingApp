@@ -31,8 +31,12 @@ class TestRepository() {
                     putAnswers(listOf(R.string.answer1_2plus2,R.string.answer2_2plus2,R.string.answer3_2plus2,R.string.answer4_2plus2))
                     putRightAnswer(R.string.answer3_2plus2)
                 }
+                val answersFire = Answers().apply {
+                    putRightAnswer(R.string.answer_fire)
+                }
                 listOf(
-                    Question(R.string.question_2plus2, answersMath,1)
+                    Question(R.string.question_2plus2, answersMath,1),
+                    Question(R.string.question_fire,answersFire,2)
                 )
             }
         }

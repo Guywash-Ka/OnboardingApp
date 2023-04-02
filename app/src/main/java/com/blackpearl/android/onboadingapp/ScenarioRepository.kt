@@ -34,6 +34,7 @@ class ScenarioRepository(
                 Scenario(context, nextActCallback)
                     .addAct {
                         it.useNarratorScene("Act III. Pizdec", "go go go")
+                        it.addTest(2)
                     }.addAct {
                         it.useNarratorScene("Act IIVDFSD. Zaebis", "Da")
                     }

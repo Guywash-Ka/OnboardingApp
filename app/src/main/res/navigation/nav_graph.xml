@@ -103,5 +103,28 @@
         <argument
             android:name="testId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_quizFragment_to_testPassedFragment"
+            app:destination="@id/testPassedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/testPassedFragment"
+        android:name="com.blackpearl.android.onboadingapp.TestPassedFragment"
+        android:label="TestPassedFragment" >
+        <argument
+            android:name="testId"
+            app:argType="integer" />
+        <argument
+            android:name="testResult"
+            app:argType="integer" />
+        <argument
+            android:name="rightAnswers"
+            app:argType="integer" />
+        <argument
+            android:name="questionAmount"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_testPassedFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
     </fragment>
 </navigation>

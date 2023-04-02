@@ -56,6 +56,7 @@ class QuestFragment : Fragment() {
 
         val layout = act.getMotionLayout()
 
+
         act.getTestId()?.also { testId ->
             // We have a test
 
