@@ -38,7 +38,10 @@ class ProfileFragment : Fragment() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
+        val dayNumber = 2// будут передаваться из home
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        val txtProgress: TextView = view.findViewById(R.id.txtProgress)
+        nameView = view.findViewById(R.id.textView)
         progressBarCircular = view.findViewById(R.id.progressBarCircular)
         progressBarHorizontal = view.findViewById(R.id.progressBarHorizontal)
 

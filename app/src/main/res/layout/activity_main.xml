@@ -23,23 +23,24 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_gravity="center_horizontal"
-                android:background="#b51d4e"
+                android:background="@color/primary_rns"
                 android:elevation="4dp"
                 android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/rns_logo"
-                    android:src="@drawable/logo_rns" />
-            </androidx.appcompat.widget.Toolbar>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/logo_rns"
+                    android:alpha=".0"/>
 
+            </androidx.appcompat.widget.Toolbar>
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/nav_host_fragment"
@@ -69,9 +70,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#C0C0C0"
+        android:background="#FFFFFF"
         android:elevation="2dp"
-        app:itemIconSize="30dp"
+        app:itemIconSize="25dp"
         app:itemIconTint="@animator/item_selector"
         app:itemRippleColor="@android:color/transparent"
         app:labelVisibilityMode="unlabeled"
