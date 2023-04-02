@@ -34,7 +34,7 @@ class CalendarFragment : Fragment() {
         val repository = CalendarRepository()
 
         binding.recyclerView.adapter = CalendarAdapter(repository.getEvents()) {
-            Toast.makeText(context, "Touched ${it.name}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Вы записаны на: ${it.name}", Toast.LENGTH_SHORT).show()
         }
     }
 
