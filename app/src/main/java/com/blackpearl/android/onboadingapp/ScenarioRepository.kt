@@ -42,6 +42,23 @@ class ScenarioRepository(
             }
 
 
+            -1 -> {
+                Scenario(context, nextActCallback)
+                    .addAct {
+                        it.useNarratorScene("Игорь" +
+                                "Умеет то и се", "Приятно познакомится")
+                    }.addAct {
+                        it.useNarratorScene("Райан" +
+                                "Гослинг", "Приятно познакомится")
+                    }.addAct {
+                        it.useNarratorScene("Игорь" +
+                                "Умеет то и се", "Приятно познакомится")
+                    }.addAct {
+                        it.useNarratorScene("Игорь" +
+                                "Умеет то и се", "Приятно познакомится")
+                    }
+            }
+
             else -> {
                 Scenario(context, nextActCallback)
                     .addAct {
@@ -70,6 +87,7 @@ class ScenarioRepository(
                     }
 
             }
+
 
         }
     }
