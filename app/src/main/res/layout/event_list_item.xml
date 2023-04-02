@@ -12,7 +12,7 @@
         android:layout_height="64dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shariki" />
+        app:srcCompat="@drawable/balloons" />
 
     <TextView
         android:id="@+id/title"
