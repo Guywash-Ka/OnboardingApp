@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home_fragment"
-        android:icon="@android:drawable/ic_menu_compass"
+        android:icon="@drawable/home"
         android:title="@string/nav_home" />
     <item
         android:id="@+id/profile_fragment"
-        android:icon="@android:drawable/ic_menu_edit"
+        android:icon="@drawable/profile"
         android:title="@string/nav_profile" />
     <item
-        android:id="@+id/challenge_fragment"
-        android:icon="@android:drawable/star_on"
-        android:title="@string/nav_challenges" />
+        android:id="@+id/knowledge_fragment"
+        android:icon="@drawable/knowledge"
+        android:title="@string/nav_knowledge" />
     <item
         android:id="@+id/calendar_fragment"
         android:icon="@android:drawable/ic_menu_my_calendar"

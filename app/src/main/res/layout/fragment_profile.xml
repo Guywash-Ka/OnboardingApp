@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="150dp"
                 android:text="@string/Additional_info"
                 android:textColor="@color/grey"
                 android:textSize="30sp"

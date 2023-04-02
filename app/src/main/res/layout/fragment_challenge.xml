@@ -9,6 +9,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Challenge fragment" />
+        android:text="Эта старница обязательно появится в следующих обновлениях. Ждите!"
+        android:textSize="30sp"
+        android:gravity="center"/>
 
 </FrameLayout>
