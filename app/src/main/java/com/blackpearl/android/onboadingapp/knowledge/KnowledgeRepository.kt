@@ -6,7 +6,6 @@ class KnowledgeRepository {
         return listOf(Book(1, "Atlas Shrugged"), Book(2, "Техника безопасности"), Book(3,"Трудовой кодекс РФ"))
     }
 
-
     fun getTopics(bookId: Int): List<Topic> {
         return when (bookId) {
             2 -> {

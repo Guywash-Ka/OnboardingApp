@@ -9,6 +9,7 @@ class CalendarAdapter(
     private val events: List<Event>,
     private val onItemClicked: ((Event) -> Unit)? = null
 ) : RecyclerView.Adapter<EventViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = EventListItemBinding.inflate(inflater, parent, false)
