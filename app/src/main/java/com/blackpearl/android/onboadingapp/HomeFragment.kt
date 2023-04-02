@@ -45,7 +45,23 @@ class HomeFragment : Fragment() {
                     HomeFragmentDirections.startQuest(2)
                 )
             }
+            day3.setOnClickListener {
+                findNavController().navigate(
+                    HomeFragmentDirections.startQuest(3)
+                )
+            }
 
+            day4.setOnClickListener {
+                findNavController().navigate(
+                    HomeFragmentDirections.startQuest(4)
+                )
+            }
+
+            day5.setOnClickListener {
+                findNavController().navigate(
+                    HomeFragmentDirections.startQuest(5)
+                )
+            }
         }
     }
 
