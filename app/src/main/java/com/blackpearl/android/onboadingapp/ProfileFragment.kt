@@ -24,6 +24,7 @@ class ProfileFragment : Fragment() {
     private lateinit var nameView: TextView
     private lateinit var dayView: TextView
     private lateinit var progressHorizontalBarTextView: TextView
+    private lateinit var lvlTextView: TextView
     private lateinit var progressBarCircular: ProgressBar
     private lateinit var progressBarHorizontal: ProgressBar
     private val daysAmount = 7
@@ -42,6 +43,7 @@ class ProfileFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         val txtProgress: TextView = view.findViewById(R.id.txtProgress)
         nameView = view.findViewById(R.id.textView)
+        lvlTextView = view.findViewById(R.id.lvl_text)
         progressBarCircular = view.findViewById(R.id.progressBarCircular)
         progressBarHorizontal = view.findViewById(R.id.progressBarHorizontal)
 
@@ -93,14 +95,19 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setDay(day: Int) {
-        dayView.text = day.toString()
+        dayView.text = if (day <= daysAmount){
+            "${day}/$daysAmount\ndays"
+            } else {
+                "$day\ndays"
+        }
         progressBarCircular.progress = 100 / daysAmount * day
 
     }
 
     private fun setProgressHorizontalBar(progress: Int) {
-        progressHorizontalBarTextView.text = progress.toString()
+        progressHorizontalBarTextView.text = "$progress/${progress / 100 * 100 + 100}"
         progressBarHorizontal.progress = progress % 100
+        lvlTextView.text = "Lvl. ${progress/100}"
 
     }
 

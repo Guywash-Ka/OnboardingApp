@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         checkIsLaunch()
         mainViewModel.setDay(4)
-        mainViewModel.setPoints(140)
+        mainViewModel.setPoints(340)
 //        getPoints()
 //        getName()
 
