@@ -33,6 +33,6 @@
     <string name="nav_knowledge">Knowledge</string>
     <string name="question_fire">Чем тушить пожар?</string>
     <string name="answer_fire">огнетушитель</string>
-    <string name="test_result_message">Тест пройден!\n(%1$d правильных ответов из %2$d)\nПолучено %3$d очков</string>
+    <string name="test_result_message">Тест пройден!\n%1$d правильных ответов из %2$d\nПолучено %3$d очков</string>
 >>>>>>> b12e98ce727e518c75a23bf7635be5145d3a3a82
 </resources>

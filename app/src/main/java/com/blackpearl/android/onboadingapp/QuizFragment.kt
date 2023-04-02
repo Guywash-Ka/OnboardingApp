@@ -162,7 +162,9 @@ class QuizFragment: Fragment() {
         val rightAnswer = quizViewModel.currentQuestionAnswers.getRightAnswer()
 
         if (getString(rightAnswer) == answerText) {
-            Toast.makeText(context,"YOU GODDAMN RIGHT!",Toast.LENGTH_SHORT).show()
+            if (questionType == 2) {
+            Toast.makeText(context,"Верно!",Toast.LENGTH_SHORT).show()
+            }
             quizViewModel.rightAnswers += 1
             quizViewModel.points +=
                 when(questionType) {
@@ -171,12 +173,12 @@ class QuizFragment: Fragment() {
                     else -> 0
                 }
             return true
-            // GREEN LIGHT
         }
 
         else {
-            Toast.makeText(context,"LOSER!",Toast.LENGTH_SHORT).show()
-            // RED LIGHT
+            if (questionType == 2) {
+                Toast.makeText(context,"Неверно!",Toast.LENGTH_SHORT).show()
+            }
             return false
         }
     }
