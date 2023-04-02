@@ -12,13 +12,17 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.drawerlayout.widget.DrawerLayout.*
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class RegisterFragment : Fragment() {
 
-    private val mainActivityViewModel: MainActivityViewModel by viewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +40,15 @@ class RegisterFragment : Fragment() {
         val nameEditText: EditText = requireActivity().findViewById(R.id.editTextTextPersonName)
 
         registerButton.setOnClickListener {
-            if (!TextUtils.isEmpty(nameEditText.text.toString())) {
-                mainActivityViewModel.setName(nameEditText.text.toString())
+            if (nameEditText.text.toString().isNotEmpty()) {
+
+                userViewModel.setChecked()
+
+                viewLifecycleOwner.lifecycleScope.launch {
+                    userViewModel.setRegistered(true)
+                    userViewModel.setName(nameEditText.text.toString())
+                }
+
                 findNavController().popBackStack()
             }
         }

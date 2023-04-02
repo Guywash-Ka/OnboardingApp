@@ -1,12 +1,14 @@
 package com.blackpearl.android.onboadingapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.activity.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -17,11 +19,9 @@ import androidx.navigation.fragment.findNavController
 import com.blackpearl.android.onboadingapp.databinding.FragmentHomeBinding
 import com.blackpearl.android.onboadingapp.databinding.FragmentQuestBinding
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class HomeFragment : Fragment() {
-
-    private val mainActivityViewModel: MainActivityViewModel by viewModels()
-
     private var _binding: FragmentHomeBinding? = null
     private val binding
         get() = checkNotNull(_binding) { "FragmentHomeBinding is null" }
@@ -32,7 +32,6 @@ class HomeFragment : Fragment() {
     ): View {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        checkIsLaunch()
 
         return binding.root
     }
@@ -53,20 +52,24 @@ class HomeFragment : Fragment() {
                     HomeFragmentDirections.startQuest(2)
                 )
             }
-
-        }
-    }
-
-    private fun checkIsLaunch() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                mainActivityViewModel.uiState.collect { state ->
-                    if (!state.isLaunched) {
-                        mainActivityViewModel.setIsLaunched(true)
-                        findNavController().navigate(R.id.register_fragment)
-                    }
-                }
+            day3.setOnClickListener {
+                findNavController().navigate(
+                    HomeFragmentDirections.startQuest(3)
+                )
             }
+
+            day4.setOnClickListener {
+                findNavController().navigate(
+                    HomeFragmentDirections.startQuest(4)
+                )
+            }
+
+            day5.setOnClickListener {
+                findNavController().navigate(
+                    HomeFragmentDirections.startQuest(5)
+                )
+            }
+
         }
     }
 }
