@@ -8,15 +8,12 @@ import android.graphics.drawable.ColorStateListDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
-import android.speech.tts.TextToSpeech
 import android.text.Editable
-import android.text.Layout
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
@@ -28,8 +25,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.blackpearl.android.onboadingapp.databinding.FragmentQuizBinding
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
-import org.w3c.dom.Text
 import java.util.*
 
 
@@ -83,11 +78,14 @@ class QuizFragment: Fragment() {
                 binding.fragmentQuiz.removeAllViews()
                 binding.fragmentQuiz.addView(layout)
                 val questionTextView = layout.findViewById<TextView>(R.id.question_text_view)
-                val answersIdList = listOf(R.id.answer1_text_view,
+                val answersIdList = (listOf(R.id.answer1_text_view,
                     R.id.answer2_text_view,
                     R.id.answer3_text_view,
-                    R.id.answer4_text_view)
+                    R.id.answer4_text_view))// !!!
                 val points = layout.findViewById<TextView>(R.id.points_text_view)
+
+                val rightAnswerIndex = quizViewModel.currentQuestionAnswers.getAnswers()
+                    .indexOf(quizViewModel.currentQuestionAnswers.getRightAnswer())
 
                 questionTextView.setText(quizViewModel.currentQuestionResId)
                 answersIdList.forEachIndexed { index, elem ->
@@ -96,19 +94,21 @@ class QuizFragment: Fragment() {
                         val answerTextId = quizViewModel.currentQuestionAnswers.getAnswers()[index]
                         setText(answerTextId)
                         setOnClickListener {view: View ->
+                            if(checkAnswer(getString(answerTextId),1)) {
+                                //GREEN
+                                setBackgroundResource(R.drawable.answer_background_green)
+                            }
+
+                            else {
+                                layout.findViewById<TextView>(answersIdList[rightAnswerIndex])
+                                    .setBackgroundResource(R.drawable.answer_background_green)
+                                setBackgroundResource(R.drawable.answer_background_red)
+                                //RED
+                            }
                             (layout as MotionLayout).transitionToStart {
-                                if(checkAnswer(getString(answerTextId),1)) {
-                                    //GREEN
-
-                                }
-
-                                else {
-                                    //RED
-                                }
-
                                 quizViewModel.currentIndex += 1
                                 updateQuestion()
-                            }+
+                            }
 
                         }
                     }
